@@ -1,20 +1,16 @@
-# Use an official Node.js runtime as a parent image
-FROM node:18-alpine
-
-# Set the working directory in the container
+# Stage 1: Build
+FROM node:18-alpine AS builder
 WORKDIR /app
-
-# Copy package.json and package-lock.json to the working directory
 COPY package*.json ./
-
-# Install dependencies
 RUN npm install
-
-# Copy the rest of the application files
 COPY . .
+RUN npm run build
 
-# Expose the port your app listens on (adjust if needed, Express default is 3000)
+# Stage 2: Run
+FROM node:18-alpine
+WORKDIR /app
+COPY --from=builder /app/package*.json ./
+RUN npm install --only=production
+COPY --from=builder /app/dist ./dist
 EXPOSE 3000
-
-# Define the command to run your application
-CMD [ "npm", "start" ]
+CMD ["node", "dist/index.js"]

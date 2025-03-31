@@ -1,16 +1,29 @@
 {
-  "name": "a2a-gcp-mcp",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
- "scripts": {
-  "start": "node index.js",
-  "test": "echo \"Error: no test specified\" && exit 1"
-},
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.21.2"
-  }
+    "name": "a2a-gcp-mcp",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "dev": "ts-node src/index.ts"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.21.2"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.1",
+        "@types/node": "^22.13.14",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.8.2"
+    },
+    "prettier": {
+        "singleQuote": false,
+        "trailingComma": "none",
+        "printWidth": 120,
+        "tabWidth": 4
+    }
 }
